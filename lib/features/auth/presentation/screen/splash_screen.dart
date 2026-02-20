@@ -1,4 +1,5 @@
-import 'package:crafty_bay/app/provider/language_provider.dart';
+import 'package:crafty_bay/app/extensions/localization_extension.dart';
+import 'package:crafty_bay/app/providers/language_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final languageProvider = context.read<LanguageProvider>();
 
     return Scaffold(
-      appBar: AppBar(title: Text(AppLocalizations.of(context).hello)),
+      appBar: AppBar(title: Text(context.l10n.hello)),
       body: Column(
         children: [
           // FilledButton(onPressed: (){
@@ -30,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
           //     context.read<LanguageProvider>().changeLocale(Locale('en'));
           //   }
           // }, child: Text('Change Language')),
+          Text(context.l10n.changeYourLanguage),
           DropdownMenu<Locale>(
             dropdownMenuEntries: languageProvider.supportedLocales.map((e) {
               return DropdownMenuEntry(value: e, label: e.languageCode);

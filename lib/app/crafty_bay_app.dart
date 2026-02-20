@@ -1,4 +1,4 @@
-import 'package:crafty_bay/app/provider/language_provider.dart';
+import 'package:crafty_bay/app/providers/language_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
