@@ -30,9 +30,11 @@ class CraftyBayApp extends StatelessWidget {
             initialRoute: '/',
             onGenerateRoute: AppRoutes.onGenerateRoute,
             theme: AppTheme.lightTheme,
+
             darkTheme: AppTheme.darkTheme,
             locale: languageProvider.currentLocale,
             supportedLocales: languageProvider.supportedLocales,
+            themeMode: ThemeMode.light,
           );
         }
       ),

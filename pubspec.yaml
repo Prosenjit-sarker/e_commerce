@@ -20,6 +20,7 @@ dependencies:
   firebase_core: ^4.4.0
   firebase_crashlytics: ^5.0.7
   firebase_analytics: ^12.1.2
+  flutter_svg: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -32,4 +33,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+
+  assets:
+    - assets/images/
+
 
