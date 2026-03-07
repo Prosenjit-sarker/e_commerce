@@ -1,4 +1,6 @@
 import 'package:crafty_bay/app/extensions/utils_extension.dart';
+import 'package:crafty_bay/features/auth/presentation/screen/sign_in_screen.dart';
+import 'package:crafty_bay/features/auth/presentation/screen/verify_otp_screen.dart';
 import 'package:crafty_bay/features/auth/presentation/widgets/app_logo.dart';
 import 'package:crafty_bay/features/shared/Presentation/Utils/validators.dart';
 import 'package:flutter/material.dart';
@@ -91,6 +93,12 @@ class _SignupScreenState extends State<SignupScreen> {
                     onPressed: _onTapSignUpButton,
                     child: Text('Sign Up'),
                   ),
+                  const SizedBox(height: 16),
+                  TextButton(
+                    onPressed: _onTapSignINButton,
+                    child: Text('Already have an account? Sign In'),
+                  ),
+
                 ],
               ),
             ),
@@ -101,8 +109,12 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _onTapSignUpButton() {
-
+    Navigator.pushNamed(context, VerifyOtpScreen.name);
   }
+  void _onTapSignINButton() {
+    Navigator.pushNamed(context, SignInScreen.name);
+  }
+
   @override
   void dispose() {
     _emailTEController.dispose();
