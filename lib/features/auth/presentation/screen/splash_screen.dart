@@ -1,11 +1,10 @@
   import 'package:crafty_bay/app/providers/language_provider.dart';
-import 'package:crafty_bay/features/auth/presentation/screen/signup_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
 
+import '../../../shared/Presentation/screens/main_nav_holder_screen.dart';
 import '../widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,8 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _navigateToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, SignupScreen.name);
+    await Future.delayed(const Duration(seconds: 2));
+    Navigator.pushReplacementNamed(context, MainNavHolderScreen.name);
   }
   @override
   Widget build(BuildContext context) {

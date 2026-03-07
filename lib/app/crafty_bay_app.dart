@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../features/shared/Presentation/providers/main_nav_provider.dart';
 import '../l10n/app_localizations.dart';
 import 'app_routes.dart';
 import 'app_theme.dart';
@@ -16,6 +17,8 @@ class CraftyBayApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
+        ChangeNotifierProvider(create: (_) => MainNavProvider()),
+
       ],
       child: Consumer<LanguageProvider>(
         builder: (context, languageProvider, child) {
