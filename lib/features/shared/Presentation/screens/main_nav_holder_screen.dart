@@ -1,7 +1,9 @@
+import 'package:crafty_bay/features/home/presentation/screens/home_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../home/presentation/widgets/app_bar_icon_button.dart';
 import '../providers/main_nav_provider.dart';
 
 class MainNavHolderScreen extends StatefulWidget {
@@ -15,7 +17,7 @@ class MainNavHolderScreen extends StatefulWidget {
 class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
 
   final List<Widget> _screens = [
-    SizedBox(),
+    HomeScreens(),
     SizedBox(),
     SizedBox(),
     SizedBox(),
