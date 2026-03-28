@@ -1,7 +1,9 @@
 import 'package:crafty_bay/features/home/presentation/widgets/home_slider.dart';
 import 'package:crafty_bay/features/home/presentation/widgets/product_search_bar.dart';
+import 'package:crafty_bay/features/shared/Presentation/providers/main_nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import '../../../../app/asset_paths.dart';
 import '../widgets/app_bar_icon_button.dart';
 import '../widgets/home_category_list.dart';
@@ -30,7 +32,10 @@ class _HomeScreensState extends State<HomeScreens> {
               const SizedBox(height: 16),
               HomeSlider(),
               const SizedBox(height: 16),
-              SectionHeader(name: 'Categories', onTapSeeAll: () {}),
+              SectionHeader(name: 'Categories',
+                  onTapSeeAll: context.read<MainNavProvider>().moveToCategory,
+
+                  ),
               HomeCategoryList(),
               SectionHeader(name: 'Popular', onTapSeeAll: () {}),
               HorizontalProductListView(),
