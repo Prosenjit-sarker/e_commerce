@@ -6,6 +6,7 @@ import 'package:crafty_bay/features/shared/Presentation/screens/main_nav_holder_
 import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/screen/splash_screen.dart';
+import '../features/product/presentation/screens/product_list_screen.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings){
@@ -26,6 +27,11 @@ class AppRoutes {
       case MainNavHolderScreen.name:
         widget = const MainNavHolderScreen();
         break;
+      case ProductListScreen.name:
+        final categoryName = settings.arguments as String;
+        widget =  ProductListScreen(categoryName: categoryName,);
+        break;
+
 
 
 
