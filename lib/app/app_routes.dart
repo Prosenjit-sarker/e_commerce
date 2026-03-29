@@ -35,6 +35,7 @@ class AppRoutes {
 
 
 
+
     }
     return MaterialPageRoute(builder: (contex) => widget);
 

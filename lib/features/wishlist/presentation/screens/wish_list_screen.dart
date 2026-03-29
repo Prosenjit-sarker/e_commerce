@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/Presentation/widgets/product_card.dart';
 
-class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({super.key, required this.categoryName});
-  final String categoryName;
+class WishListScreen extends StatefulWidget {
+  const WishListScreen({super.key});
   static const name = '/wish-list';
 
 
   @override
-  State<ProductListScreen> createState() => _ProductListScreenState();
+  State<WishListScreen> createState() => _WishListScreenState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen> {
+class _WishListScreenState extends State<WishListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.categoryName)),
+      appBar: AppBar(title: Text('Wishlist')),
       body: GridView.builder(
-        itemCount: 30,
+        itemCount: 10,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           mainAxisSpacing: 4,
