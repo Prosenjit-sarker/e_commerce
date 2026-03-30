@@ -36,10 +36,17 @@ class PriceAndAddToCartSection extends StatelessWidget {
 
           ),
           TextButton(
-              style: FilledButton.styleFrom(
-                  fixedSize: Size.fromWidth(120)
+            style: TextButton.styleFrom(
+              backgroundColor: AppColors.themeColor,
+              fixedSize: const Size.fromWidth(120),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
               ),
-              onPressed: onTapAddToCart, child: Text('Add to Cart')
+            ),
+            onPressed: onTapAddToCart,
+            child: const Text('Add to Cart',style: TextStyle(
+              color: Colors.white
+            ),),
           ),
 
         ],
