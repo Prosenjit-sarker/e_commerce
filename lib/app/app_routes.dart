@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import '../features/auth/presentation/screen/splash_screen.dart';
 import '../features/product/presentation/screens/product_details_screen.dart';
 import '../features/product/presentation/screens/product_list_screen.dart';
+import '../features/reviews/presentations/screens/review_screen.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings){
@@ -34,6 +35,9 @@ class AppRoutes {
         break;
       case ProductDetailsScreen.name:
         widget = const ProductDetailsScreen();
+        break;
+      case ReviewScreen.name:
+        widget = const ReviewScreen();
         break;
 
 
