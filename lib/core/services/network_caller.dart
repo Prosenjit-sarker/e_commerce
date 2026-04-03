@@ -15,11 +15,13 @@ class NetworkCaller {
       Uri uri = Uri.parse(url);
 
       _logRequest(url);
-      Response response = await get(uri, headers: headers);
+      Response response = await get(uri, headers: headers,
+
+      );
       _logResponse(url, response);
 
       final decodedData = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return NetworkResponse(
           isSuccess: true,
           responseCode: response.statusCode,
@@ -48,7 +50,7 @@ class NetworkCaller {
     }
   }
 
-    Future<NetworkResponse> postRequest(
+  Future<NetworkResponse> postRequest(
     String url, {
     Map<String, dynamic>? body,
     Map<String, String>? headers,
@@ -59,13 +61,13 @@ class NetworkCaller {
       _logRequest(url, body: body);
       Response response = await post(
         uri,
-        headers: headers,
+        headers: headers ?? this.headers,
         body: jsonEncode(body),
       );
       _logResponse(url, response);
 
       final decodedData = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return NetworkResponse(
           isSuccess: true,
           responseCode: response.statusCode,
@@ -112,5 +114,3 @@ class NetworkCaller {
     );
   }
 }
-
-
