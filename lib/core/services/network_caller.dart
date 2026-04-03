@@ -38,7 +38,7 @@ class NetworkCaller {
         return NetworkResponse(
           isSuccess: false,
           responseCode: response.statusCode,
-          errorMessage: decodedData['data'],
+          errorMessage: decodedData['msg'],
         );
       }
     } catch (e) {
@@ -85,7 +85,7 @@ class NetworkCaller {
         return NetworkResponse(
           isSuccess: false,
           responseCode: response.statusCode,
-          errorMessage: decodedData['data'],
+          errorMessage: decodedData['msg'],
         );
       }
     } catch (e) {
