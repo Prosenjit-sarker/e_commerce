@@ -2,9 +2,9 @@ class UserModel {
   final String firstName;
   final String lastName;
   final String email;
-  final bool phone;
+  final String phone;
   final String avatarUrl;
-  final bool city;
+  final String city;
 
   UserModel({
     required this.firstName,
@@ -17,12 +17,12 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      firstName: json['first_name'],
-      lastName: json['last_name'],
-      email: json['email'],
-      phone: json['phone'],
-      avatarUrl: json['avatar_url'],
-      city: json['city'],
+      firstName: (json['first_name'] ?? '').toString(),
+      lastName: (json['last_name'] ?? '').toString(),
+      email: (json['email'] ?? '').toString(),
+      phone: (json['phone'] ?? '').toString(),
+      avatarUrl: (json['avatar_url'] ?? '').toString(),
+      city: (json['city'] ?? '').toString(),
     );
   }
 
