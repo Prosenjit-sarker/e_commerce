@@ -1,5 +1,7 @@
 import 'package:crafty_bay/app/providers/language_provider.dart';
+import 'package:crafty_bay/app/controllers/auth_controller.dart';
 import 'package:crafty_bay/features/auth/presentation/screen/signup_screen.dart';
+import 'package:crafty_bay/features/shared/Presentation/screens/main_nav_holder_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/app_logo.dart';
@@ -23,7 +25,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 2));
-    Navigator.pushReplacementNamed(context, SignupScreen.name);
+    final bool isLoggedIn = await AuthController.isIfUserLoggedIn();
+    if (isLoggedIn) {
+      await AuthController.getUserData();
+    }
+
+    if (!mounted) {
+      return;
+    }
+
+    Navigator.pushReplacementNamed(
+      context,
+      isLoggedIn ? MainNavHolderScreen.name : SignupScreen.name,
+    );
   }
   @override
   Widget build(BuildContext context) {
@@ -40,4 +54,3 @@ class _SplashScreenState extends State<SplashScreen> {
     ));
   }
 }
-

@@ -23,20 +23,24 @@ class AuthController {
   }
   static Future<void> getUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    userModel = UserModel.fromJson(jsonDecode(prefs.getString(_userKey)!));
     token = prefs.getString(_tokenKey);
+    final String? userData = prefs.getString(_userKey);
+    if (userData != null) {
+      userModel = UserModel.fromJson(jsonDecode(userData));
+    }
   }
 
   static Future<bool> isIfUserLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.containsKey(_tokenKey);
+    final String? savedToken = prefs.getString(_tokenKey);
+    return savedToken != null && savedToken.isNotEmpty;
   }
 
   static Future<void> clearUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tokenKey);
     await prefs.remove(_userKey);
+    token = null;
+    userModel = null;
   }
-
-  }
-
+}

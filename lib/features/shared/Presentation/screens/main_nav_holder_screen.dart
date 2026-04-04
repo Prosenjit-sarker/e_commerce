@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
 import '../../../category/presentation/screens/category_list_screen.dart';
+import '../../../home/presentation/providers/home_slider_provider.dart';
 import '../../../wishlist/presentation/screens/wish_list_screen.dart';
 import '../providers/main_nav_provider.dart';
 
@@ -24,6 +25,16 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
     CartScreen(),
     WishListScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<HomeSliderProvider>().getHomeSliders();
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
