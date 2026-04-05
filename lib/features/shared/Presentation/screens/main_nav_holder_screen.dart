@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../category/presentation/providers/category_list_provider.dart';
 import '../../../category/presentation/screens/category_list_screen.dart';
 import '../../../home/presentation/providers/home_slider_provider.dart';
 import '../../../wishlist/presentation/screens/wish_list_screen.dart';
@@ -32,6 +33,9 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<HomeSliderProvider>().getHomeSliders();
+      context.read<CategoryListProvider>().getCategories();
+
+
     });
 
   }
