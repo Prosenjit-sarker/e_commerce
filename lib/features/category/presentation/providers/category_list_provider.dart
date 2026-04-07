@@ -14,7 +14,7 @@ class CategoryListProvider extends ChangeNotifier {
 
   bool _getInitialCategoryListInProgress = true;
 
-  bool _loadMoreCategoryListInProgress = true;
+  bool _loadMoreCategoryListInProgress = false;
 
   List<CategoryModel> _categories = [];
 
@@ -27,7 +27,6 @@ class CategoryListProvider extends ChangeNotifier {
 
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
-
 
   Future<bool> getCategories() async {
     bool isSuccess = false;
@@ -68,4 +67,7 @@ class CategoryListProvider extends ChangeNotifier {
   bool get _isInitialLoading {
     return _currentPageNo == 1;
   }
+
+  bool get isLoading =>
+      _getInitialCategoryListInProgress || _loadMoreCategoryListInProgress;
 }

@@ -5,6 +5,7 @@ import 'package:logger/logger.dart';
 part '../models/network_response.dart';
 class NetworkCaller {
   final Logger _logger = Logger();
+
   final Map<String, String> headers;
   final VoidCallback onUnauthorize;
 

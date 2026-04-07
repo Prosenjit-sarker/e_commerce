@@ -1,19 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:crafty_bay/features/shared/Presentation/widgets/no_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
 import '../../../../app/asset_paths.dart';
 import '../../../../app/constants.dart';
 import '../../../../app/extensions/utils_extension.dart';
+import '../../../product/data/models/product_model.dart';
 import '../../../product/presentation/screens/product_details_screen.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.productModel});
+
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.pushNamed(context, ProductDetailsScreen.name);
-
       },
       child: Card(
         color: Colors.white,
@@ -35,7 +39,7 @@ class ProductCard extends StatelessWidget {
                     topRight: Radius.circular(8),
                   ),
                 ),
-                child: Image.asset(AssetPaths.dummyImageJpeg, fit: .scaleDown),
+                child: getImage(productModel.photos),
               ),
 
               Padding(
@@ -44,7 +48,8 @@ class ProductCard extends StatelessWidget {
                   spacing: 2,
                   children: [
                     Text(
-                      'Nike Shoe - New Edition 2026',
+                      productModel.title,
+                      overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(overflow: .ellipsis),
                     ),
@@ -52,7 +57,7 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${Constants.takaSign}120',
+                          '${Constants.takaSign}${productModel.currentPrice}',
                           style: context.textTheme.titleSmall?.copyWith(
                             color: AppColors.themeColor,
                           ),
@@ -92,5 +97,17 @@ class ProductCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget getImage(List<String> urls) {
+    if (urls.isNotEmpty) {
+      return CachedNetworkImage(imageUrl: urls.first, fit: .scaleDown,
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            NoImage(),
+        errorWidget: (context, url, error) => NoImage(),
+      );
+    } else {
+      return NoImage();
+    }
   }
 }

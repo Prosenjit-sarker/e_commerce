@@ -2,6 +2,7 @@
 import 'package:crafty_bay/features/auth/presentation/screen/sign_in_screen.dart';
 import 'package:crafty_bay/features/auth/presentation/screen/signup_screen.dart';
 import 'package:crafty_bay/features/auth/presentation/screen/verify_otp_screen.dart';
+import 'package:crafty_bay/features/category/data/models/category_model.dart';
 import 'package:crafty_bay/features/shared/Presentation/screens/main_nav_holder_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +32,8 @@ class AppRoutes {
         widget = const MainNavHolderScreen();
         break;
       case ProductListScreen.name:
-        final categoryName = settings.arguments as String;
-        widget =  ProductListScreen(categoryName: categoryName,);
+        final category = settings.arguments as CategoryModel;
+        widget =  ProductListScreen(category: category,);
         break;
       case ProductDetailsScreen.name:
         widget = const ProductDetailsScreen();

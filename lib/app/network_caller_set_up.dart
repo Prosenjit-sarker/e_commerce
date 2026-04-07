@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 NetworkCaller getNetworkCaller() {
   return NetworkCaller(
     headers: {
-      'token': AuthController.token ?? '',
       'Content-Type': 'application/json',
     }, onUnauthorize: () {
       // Handle unauthorize

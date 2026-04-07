@@ -9,4 +9,7 @@ class Urls {
 
   static String categoryListUrl(int pageNO, int pageSize) =>
       '$_baseUrl/categories?count=$pageSize&page=$pageNO';
+
+  static String productListUrl(int pageNO, int pageSize, String categoryId) =>
+      '$_baseUrl/products?count=$pageSize&page=$pageNO&category=$categoryId';
 }
