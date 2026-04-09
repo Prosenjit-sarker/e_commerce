@@ -58,7 +58,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ChangeNotifierProvider.value(value: _addToCartProvider),
       ],
       child: Scaffold(
-        appBar: AppBar(title: Text('Product details')),
+        appBar: AppBar(title: Text(context.l10n.productDetails)),
         body: Consumer<ProductDetailsProvider>(
           builder: (context, provider, child) {
             if (_productDetailsProvider.getProductDataInProgress) {
@@ -68,7 +68,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             }
             final productDetails = _productDetailsProvider.productDetailsModel;
             if (productDetails == null) {
-              return const Center(child: Text('Product details not found'));
+              return Center(child: Text(context.l10n.productDetailsNotFound));
             }
 
             return Column(
@@ -113,7 +113,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 const SizedBox(height: 16),
                               ],
                               Text(
-                                'Description',
+                                context.l10n.description,
                                 style: context.textTheme.titleMedium,
                               ),
                               const SizedBox(height: 8),
@@ -149,7 +149,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     }
                     if (isSuccess) {
                       messenger.showSnackBar(
-                        SnackBar(content: Text('Added to cart')),
+                        SnackBar(content: Text(context.l10n.addedToCart)),
                       );
                     } else {
                       messenger.showSnackBar(
@@ -199,7 +199,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       Navigator.pushNamed(context, ReviewScreen.name);
                     },
                     child: Text(
-                      'Reviews',
+                      context.l10n.reviews,
                       style: TextStyle(color: AppColors.themeColor),
                     ),
                   ),

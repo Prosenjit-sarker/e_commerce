@@ -1,9 +1,8 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../../app/extensions/utils_extension.dart';
 import '../provider/timer_provider.dart';
 
 class ResendOtpSection extends StatefulWidget {
@@ -35,11 +34,13 @@ class _ResendOtpSectionState extends State<ResendOtpSection> {
               return Row(
                 children: [
                   if (timerProvider.isRunning)
-                    Text('Resend OTP after ${timerProvider.remainingSeconds}s'),
+                    Text(
+                      context.l10n.resendOtpAfter(timerProvider.remainingSeconds),
+                    ),
                   TextButton(
                     onPressed: _onTapResendButton,
                     child: Text(
-                      'Resend',
+                      context.l10n.resend,
                       style: TextStyle(
                         color: timerProvider.isRunning
                             ? Colors.grey

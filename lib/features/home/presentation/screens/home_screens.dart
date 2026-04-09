@@ -1,3 +1,6 @@
+import 'package:crafty_bay/app/providers/theme_provider.dart';
+import 'package:crafty_bay/app/providers/language_provider.dart';
+import 'package:crafty_bay/app/extensions/utils_extension.dart';
 import 'package:crafty_bay/features/category/presentation/providers/category_list_provider.dart';
 import 'package:crafty_bay/features/category/data/models/category_model.dart';
 import 'package:crafty_bay/features/home/presentation/widgets/home_slider.dart';
@@ -52,7 +55,7 @@ class _HomeScreensState extends State<HomeScreens> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -63,10 +66,10 @@ class _HomeScreensState extends State<HomeScreens> {
               const SizedBox(height: 16),
               HomeSlider(),
               const SizedBox(height: 16),
-              SectionHeader(name: 'Categories',
-                  onTapSeeAll: context.read<MainNavProvider>().moveToCategory,
-
-                  ),
+              SectionHeader(
+                name: context.l10n.categories,
+                onTapSeeAll: context.read<MainNavProvider>().moveToCategory,
+              ),
               HomeCategoryList(),
               Consumer<CategoryListProvider>(
                 builder: (context, categoryProvider, child) {
@@ -78,9 +81,9 @@ class _HomeScreensState extends State<HomeScreens> {
                   }
 
                   if (categoryProvider.categories.isEmpty) {
-                    return const Padding(
+                    return Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
-                      child: Text('No categories found'),
+                      child: Text(context.l10n.noCategoriesFound),
                     );
                   }
 
@@ -112,17 +115,17 @@ class _HomeScreensState extends State<HomeScreens> {
 
                   return Column(
                     children: [
-                      SectionHeader(name: 'Popular', onTapSeeAll: () {}),
+                      SectionHeader(name: context.l10n.popular, onTapSeeAll: () {}),
                       HorizontalProductListView(
                         key: ValueKey('popular-$popularCategoryId'),
                         categoryId: popularCategoryId,
                       ),
-                      SectionHeader(name: 'Special', onTapSeeAll: () {}),
+                      SectionHeader(name: context.l10n.special, onTapSeeAll: () {}),
                       HorizontalProductListView(
                         key: ValueKey('special-$specialCategoryId'),
                         categoryId: specialCategoryId,
                       ),
-                      SectionHeader(name: 'New', onTapSeeAll: () {}),
+                      SectionHeader(name: context.l10n.newArrivals, onTapSeeAll: () {}),
                       HorizontalProductListView(
                         key: ValueKey('new-$newCategoryId'),
                         categoryId: newCategoryId,
@@ -139,10 +142,28 @@ class _HomeScreensState extends State<HomeScreens> {
   }
 }
 
-AppBar buildAppBar() {
+AppBar buildAppBar(BuildContext context) {
+  final themeProvider = context.watch<ThemeProvider>();
+  final languageProvider = context.watch<LanguageProvider>();
+
   return AppBar(
     title: SvgPicture.asset(AssetPaths.navLogoSvg),
     actions: [
+      AppBarIconButton(
+        onTap: () {
+          final nextLocale = languageProvider.currentLocale.languageCode == 'en'
+              ? const Locale('bn')
+              : const Locale('en');
+          languageProvider.changeLocale(nextLocale);
+        },
+        icon: Icons.language,
+      ),
+      const SizedBox(width: 4),
+      AppBarIconButton(
+        onTap: themeProvider.toggleTheme,
+        icon: themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+      ),
+      const SizedBox(width: 4),
       AppBarIconButton(onTap: () {}, icon: Icons.person),
       const SizedBox(width: 4),
       AppBarIconButton(onTap: () {}, icon: Icons.call),

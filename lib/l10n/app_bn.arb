@@ -1,5 +1,73 @@
- {
- "hello": "হ্যালো",
-  "changeYourLanguage": "তোমার ভাষা পরিবর্তন করো।"
-
- }
+{
+  "hello": "হ্যালো",
+  "changeYourLanguage": "ভাষা পরিবর্তন করুন",
+  "home": "হোম",
+  "categories": "ক্যাটাগরি",
+  "cart": "কার্ট",
+  "wishlist": "উইশলিস্ট",
+  "popular": "পপুলার",
+  "special": "স্পেশাল",
+  "newArrivals": "নতুন",
+  "seeAll": "সব দেখুন",
+  "search": "সার্চ",
+  "noCategoriesFound": "কোনো ক্যাটাগরি পাওয়া যায়নি",
+  "noProductFound": "কোনো পণ্য পাওয়া যায়নি",
+  "carts": "কার্টসমূহ",
+  "yourCartIsEmpty": "আপনার কার্ট খালি",
+  "yourWishlistIsEmpty": "আপনার উইশলিস্ট খালি",
+  "retry": "আবার চেষ্টা করুন",
+  "totalPrice": "মোট মূল্য",
+  "checkout": "চেকআউট",
+  "price": "দাম",
+  "addToCart": "কার্টে যোগ করুন",
+  "productDetails": "পণ্যের বিস্তারিত",
+  "productDetailsNotFound": "পণ্যের বিস্তারিত পাওয়া যায়নি",
+  "description": "বর্ণনা",
+  "reviews": "রিভিউ",
+  "reviewsCount": "রিভিউ ({count})",
+  "@reviewsCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "addedToCart": "কার্টে যোগ করা হয়েছে",
+  "color": "রং",
+  "size": "সাইজ",
+  "welcomeBack": "স্বাগতম",
+  "signInWithEmailAndPassword": "ইমেইল ও পাসওয়ার্ড দিয়ে সাইন ইন করুন",
+  "email": "ইমেইল",
+  "emailRequired": "ইমেইল আবশ্যক",
+  "password": "পাসওয়ার্ড",
+  "signIn": "সাইন ইন",
+  "needAccountSignUp": "অ্যাকাউন্ট নেই? সাইন আপ করুন",
+  "signUpWithEmail": "ইমেইল দিয়ে সাইন আপ",
+  "getStartedWithYourDetails": "আপনার তথ্য দিয়ে শুরু করুন",
+  "firstName": "নামের প্রথম অংশ",
+  "firstNameRequired": "নামের প্রথম অংশ আবশ্যক",
+  "lastName": "নামের শেষ অংশ",
+  "lastNameRequired": "নামের শেষ অংশ আবশ্যক",
+  "phone": "ফোন",
+  "phoneRequired": "ফোন নম্বর আবশ্যক",
+  "city": "শহর",
+  "cityRequired": "শহরের নাম আবশ্যক",
+  "signUp": "সাইন আপ",
+  "alreadyHaveAccountSignIn": "ইতোমধ্যে অ্যাকাউন্ট আছে? সাইন ইন",
+  "enterYourOtp": "আপনার OTP দিন",
+  "verifyYourOtpMessage": "আপনার ইমেইলে পাঠানো OTP যাচাই করুন",
+  "pleaseEnterOtp": "OTP দিন",
+  "verify": "যাচাই করুন",
+  "alreadyHaveAccountSignInLower": "ইতোমধ্যে অ্যাকাউন্ট আছে? সাইন ইন",
+  "resendOtpAfter": "{seconds} সেকেন্ড পরে OTP আবার পাঠান",
+  "@resendOtpAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "resend": "আবার পাঠান",
+  "createReview": "রিভিউ লিখুন",
+  "submit": "সাবমিট"
+}

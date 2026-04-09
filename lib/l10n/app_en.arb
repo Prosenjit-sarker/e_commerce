@@ -1,4 +1,73 @@
 {
-"hello": "Hello",
-  "changeYourLanguage": "Change your language"
+  "hello": "Hello",
+  "changeYourLanguage": "Change your language",
+  "home": "Home",
+  "categories": "Categories",
+  "cart": "Cart",
+  "wishlist": "Wishlist",
+  "popular": "Popular",
+  "special": "Special",
+  "newArrivals": "New",
+  "seeAll": "See all",
+  "search": "Search",
+  "noCategoriesFound": "No categories found",
+  "noProductFound": "No product found",
+  "carts": "Carts",
+  "yourCartIsEmpty": "Your cart is empty",
+  "yourWishlistIsEmpty": "Your wishlist is empty",
+  "retry": "Retry",
+  "totalPrice": "Total Price",
+  "checkout": "Checkout",
+  "price": "Price",
+  "addToCart": "Add to Cart",
+  "productDetails": "Product details",
+  "productDetailsNotFound": "Product details not found",
+  "description": "Description",
+  "reviews": "Reviews",
+  "reviewsCount": "Reviews ({count})",
+  "@reviewsCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "addedToCart": "Added to cart",
+  "color": "Color",
+  "size": "Size",
+  "welcomeBack": "Welcome Back",
+  "signInWithEmailAndPassword": "Sign in with your email and password",
+  "email": "Email",
+  "emailRequired": "Email is required",
+  "password": "Password",
+  "signIn": "Sign In",
+  "needAccountSignUp": "Need an account? Sign Up",
+  "signUpWithEmail": "Sign Up With Email",
+  "getStartedWithYourDetails": "Get Started With Your details",
+  "firstName": "First Name",
+  "firstNameRequired": "First name is required",
+  "lastName": "Last Name",
+  "lastNameRequired": "Last name is required",
+  "phone": "Phone",
+  "phoneRequired": "Phone is required",
+  "city": "City",
+  "cityRequired": "City is required",
+  "signUp": "Sign Up",
+  "alreadyHaveAccountSignIn": "Already have an account? Sign In",
+  "enterYourOtp": "Enter Your OTP",
+  "verifyYourOtpMessage": "Verify your otp that has been sent to your email",
+  "pleaseEnterOtp": "Please enter otp",
+  "verify": "Verify",
+  "alreadyHaveAccountSignInLower": "Already have an account? Sign in",
+  "resendOtpAfter": "Resend OTP after {seconds}s",
+  "@resendOtpAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "resend": "Resend",
+  "createReview": "Create Review",
+  "submit": "Submit"
 }

@@ -3,6 +3,7 @@ import 'package:crafty_bay/features/wishlist/presentation/providers/wish_list_pr
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/Presentation/widgets/product_card.dart';
 
 class WishListScreen extends StatefulWidget {
@@ -35,7 +36,7 @@ class _WishListScreenState extends State<WishListScreen> {
     return ChangeNotifierProvider.value(
       value: _wishListProvider,
       child: Scaffold(
-        appBar: AppBar(title: Text('Wishlist')),
+        appBar: AppBar(title: Text(context.l10n.wishlist)),
         body: Consumer<WishListProvider>(
           builder: (context, provider, child) {
             if (provider.getWishListInProgress) {
@@ -51,7 +52,7 @@ class _WishListScreenState extends State<WishListScreen> {
                     const SizedBox(height: 8),
                     ElevatedButton(
                       onPressed: provider.getWishList,
-                      child: const Text('Retry'),
+                      child: Text(context.l10n.retry),
                     ),
                   ],
                 ),
@@ -59,8 +60,8 @@ class _WishListScreenState extends State<WishListScreen> {
             }
 
             if (provider.wishListProducts.isEmpty) {
-              return const Center(
-                child: Text('Your wishlist is empty'),
+              return Center(
+                child: Text(context.l10n.yourWishlistIsEmpty),
               );
             }
 

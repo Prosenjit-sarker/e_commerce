@@ -4,6 +4,7 @@ import 'package:crafty_bay/features/shared/Presentation/widgets/center_circular_
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/Presentation/providers/main_nav_provider.dart';
 import '../widgets/cart_item.dart';
 
@@ -44,7 +45,7 @@ class _CartScreenState extends State<CartScreen> {
             onPressed: _onTapBackButton,
             icon: Icon(Icons.arrow_back_ios),
           ),
-          title: Text('Carts'),
+          title: Text(context.l10n.carts),
         ),
         body: ChangeNotifierProvider.value(
           value: _cartListProvider,
@@ -59,8 +60,8 @@ class _CartScreenState extends State<CartScreen> {
                 );
               }
               if (_cartListProvider.cartItems.isEmpty) {
-                return const Center(
-                  child: Text('Your cart is empty'),
+                return Center(
+                  child: Text(context.l10n.yourCartIsEmpty),
                 );
               }
               return Column(

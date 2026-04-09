@@ -1,5 +1,6 @@
 import 'package:crafty_bay/features/reviews/presentations/widgets/reviews_count_cart_section.dart';
 import 'package:flutter/material.dart';
+import '../../../../app/extensions/utils_extension.dart';
 import '../model/review_model.dart';
 import '../widgets/review_cart_item.dart';
 
@@ -32,7 +33,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
-        title: Text('Reviews'),
+        title: Text(context.l10n.reviews),
       ),
       body: Column(
         children: [

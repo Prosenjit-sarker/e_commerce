@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
+import '../../../../app/extensions/utils_extension.dart';
 import '../model/review_model.dart';
 
 class CreateReviewPage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _CreateReviewPageState extends State<CreateReviewPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Create Review'),
+        title: Text(context.l10n.createReview),
       ),
       body: Container(
         width: double.infinity,
@@ -55,18 +56,18 @@ class _CreateReviewPageState extends State<CreateReviewPage> {
                 children: [
                   TextField(
                     controller: firstNameController,
-                    decoration: const InputDecoration(labelText: 'First Name'),
+                    decoration: InputDecoration(labelText: context.l10n.firstName),
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: lastNameController,
-                    decoration: const InputDecoration(labelText: 'Last Name'),
+                    decoration: InputDecoration(labelText: context.l10n.lastName),
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: descController,
                     maxLines: 8,
-                    decoration: const InputDecoration(labelText: 'Description'),
+                    decoration: InputDecoration(labelText: context.l10n.description),
                   ),
                 ],
               ),
@@ -82,7 +83,7 @@ class _CreateReviewPageState extends State<CreateReviewPage> {
                   ),
                 ),
                 onPressed: submit,
-                child: const Text('Submit'),
+                child: Text(context.l10n.submit),
               ),
             ),
             const SizedBox(height: 12),

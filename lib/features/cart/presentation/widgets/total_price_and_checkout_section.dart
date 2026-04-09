@@ -16,7 +16,7 @@ class TotalPriceAndCheckoutSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-          borderRadius: .only(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
           ),
@@ -26,9 +26,9 @@ class TotalPriceAndCheckoutSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            crossAxisAlignment: .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Total Price',style: context.textTheme.bodyLarge,),
+              Text(context.l10n.totalPrice,style: context.textTheme.bodyLarge,),
               Text('${Constants.takaSign}$totalPrice',style: context.textTheme.titleLarge?.copyWith(
                 color: AppColors.themeColor,
               ),)
@@ -44,7 +44,7 @@ class TotalPriceAndCheckoutSection extends StatelessWidget {
               ),
             ),
             onPressed: onTapCheckout,
-            child: const Text('Checkout',style: TextStyle(
+            child: Text(context.l10n.checkout,style: const TextStyle(
               color: Colors.white
             ),),
           ),

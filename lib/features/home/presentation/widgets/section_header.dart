@@ -17,7 +17,7 @@ class SectionHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(name,style: context.textTheme.titleLarge  ),
-          TextButton(onPressed: onTapSeeAll, child: Text('See all')),
+          TextButton(onPressed: onTapSeeAll, child: Text(context.l10n.seeAll)),
 
         ],
       ),

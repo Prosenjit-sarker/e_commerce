@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../../app/extensions/utils_extension.dart';
 import '../../../category/presentation/providers/category_list_provider.dart';
 import '../../../category/presentation/screens/category_list_screen.dart';
 import '../../../home/presentation/providers/home_slider_provider.dart';
@@ -66,16 +67,16 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
             items: [
               BottomNavigationBarItem(
                   icon: Icon(Icons.home),
-                  label: 'Home'),
+                  label: context.l10n.home),
               BottomNavigationBarItem(
                   icon: Icon(Icons.dashboard),
-                  label: 'Categories'),
+                  label: context.l10n.categories),
               BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_cart),
-                  label: 'Cart'),
+                  label: context.l10n.cart),
               BottomNavigationBarItem(
                   icon: Icon(Icons.favorite_outline),
-                  label: 'WishList'),
+                  label: context.l10n.wishlist),
 
             ],
           ),

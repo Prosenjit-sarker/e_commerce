@@ -18,7 +18,7 @@ class ReviewCountToCartSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        borderRadius: .only(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
         ),
@@ -28,10 +28,12 @@ class ReviewCountToCartSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            crossAxisAlignment: .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Reviews  (${count.toStringAsFixed(count.truncateToDouble() == count ? 0 : 1)})',
+                context.l10n.reviewsCount(
+                  count.toStringAsFixed(count.truncateToDouble() == count ? 0 : 1),
+                ),
                 style: context.textTheme.bodyLarge?.copyWith(
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:crafty_bay/features/product/presentation/providers/product_list_
 import 'package:crafty_bay/features/shared/Presentation/widgets/center_circular_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../app/extensions/utils_extension.dart';
 
 import '../../../shared/Presentation/widgets/product_card.dart';
 
@@ -54,9 +55,9 @@ class _HorizontalProductListViewState extends State<HorizontalProductListView> {
             );
           }
           if (provider.products.isEmpty) {
-            return const SizedBox(
+            return SizedBox(
               height: 215,
-              child: Center(child: Text('No product found')),
+              child: Center(child: Text(context.l10n.noProductFound)),
             );
           }
 

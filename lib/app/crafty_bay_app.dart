@@ -1,6 +1,6 @@
 import 'package:crafty_bay/app/providers/language_provider.dart';
+import 'package:crafty_bay/app/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import '../features/category/presentation/providers/category_list_provider.dart';
 import '../features/home/presentation/providers/home_slider_provider.dart';
@@ -19,31 +19,27 @@ class CraftyBayApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => MainNavProvider()),
         ChangeNotifierProvider(create: (context) => HomeSliderProvider()),
         ChangeNotifierProvider(create: (context) => CategoryListProvider()),
 
 
       ],
-      child: Consumer<LanguageProvider>(
-        builder: (context, languageProvider, child) {
+      child: Consumer2<LanguageProvider, ThemeProvider>(
+        builder: (context, languageProvider, themeProvider, child) {
           return MaterialApp(
             navigatorKey: navigatorKey,
             debugShowCheckedModeBanner: false,
-            localizationsDelegates: [
-              AppLocalizations.delegate, // Add this line
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
             initialRoute: '/',
             onGenerateRoute: AppRoutes.onGenerateRoute,
             theme: AppTheme.lightTheme,
 
             darkTheme: AppTheme.darkTheme,
             locale: languageProvider.currentLocale,
-            supportedLocales: languageProvider.supportedLocales,
-            themeMode: ThemeMode.light,
+            supportedLocales: AppLocalizations.supportedLocales,
+            themeMode: themeProvider.themeMode,
           );
         }
       ),

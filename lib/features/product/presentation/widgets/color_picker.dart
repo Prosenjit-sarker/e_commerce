@@ -1,5 +1,4 @@
 import 'package:crafty_bay/app/extensions/utils_extension.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/app_colors.dart';
@@ -20,10 +19,10 @@ class _ColorPickerState extends State<ColorPicker> {
 
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: .start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,
       children: [
-        Text('Color', style: context.textTheme.titleMedium),
+        Text(context.l10n.color, style: context.textTheme.titleMedium),
         Row(
           children: widget.colors.map((color) {
             return GestureDetector(

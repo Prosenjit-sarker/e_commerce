@@ -47,11 +47,11 @@ class _SignupScreenState extends State<SignupScreen> {
                     AppLogo(),
                     const SizedBox(height: 24),
                     Text(
-                      'Sign Up With Email',
+                      context.l10n.signUpWithEmail,
                       style: context.textTheme.titleLarge,
                     ),
                     Text(
-                      'Get Started With Your details',
+                      context.l10n.getStartedWithYourDetails,
                       style: context.textTheme.bodyLarge?.copyWith(
                         color: Colors.grey,
                       ),
@@ -59,48 +59,48 @@ class _SignupScreenState extends State<SignupScreen> {
                     const SizedBox(height: 24),
                     TextFormField(
                       controller: _emailTEController,
-                      decoration: InputDecoration(hintText: 'Email'),
+                      decoration: InputDecoration(hintText: context.l10n.email),
                       validator: (String? value) =>
-                          Validators.validateEmail(value, 'Email is required'),
+                          Validators.validateEmail(value, context.l10n.emailRequired),
                     ),
 
                     const SizedBox(height: 8),
 
                     TextFormField(
                       controller: _firstNameTEController,
-                      decoration: InputDecoration(hintText: 'First Name'),
+                      decoration: InputDecoration(hintText: context.l10n.firstName),
                       validator: (String? value) => Validators.validateText(
                         value,
-                        'First name is required',
+                        context.l10n.firstNameRequired,
                       ),
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
                       controller: _lastNameTEController,
-                      decoration: InputDecoration(hintText: 'Last Name'),
+                      decoration: InputDecoration(hintText: context.l10n.lastName),
                       validator: (String? value) => Validators.validateText(
                         value,
-                        'Last name is required',
+                        context.l10n.lastNameRequired,
                       ),
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
                       controller: _phoneTEController,
-                      decoration: InputDecoration(hintText: 'Phone'),
+                      decoration: InputDecoration(hintText: context.l10n.phone),
                       validator: (String? value) =>
-                          Validators.validateText(value, 'Phone is required'),
+                          Validators.validateText(value, context.l10n.phoneRequired),
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
                       controller: _cityTEController,
-                      decoration: InputDecoration(hintText: 'City'),
+                      decoration: InputDecoration(hintText: context.l10n.city),
                       validator: (String? value) =>
-                          Validators.validateText(value, 'City is required'),
+                          Validators.validateText(value, context.l10n.cityRequired),
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
                       controller: _passwordTEController,
-                      decoration: InputDecoration(hintText: 'Password'),
+                      decoration: InputDecoration(hintText: context.l10n.password),
                       validator: (String? value) =>
                           Validators.validatePassword(value),
                     ),
@@ -113,14 +113,14 @@ class _SignupScreenState extends State<SignupScreen> {
                         }
                         return FilledButton(
                           onPressed: _onTapSignUpButton,
-                          child: Text('Sign Up'),
+                          child: Text(context.l10n.signUp),
                         );
                       },
                     ),
                     const SizedBox(height: 16),
                     TextButton(
                       onPressed: _onTapSignINButton,
-                      child: Text('Already have an account? Sign In'),
+                      child: Text(context.l10n.alreadyHaveAccountSignIn),
                     ),
                   ],
                 ),

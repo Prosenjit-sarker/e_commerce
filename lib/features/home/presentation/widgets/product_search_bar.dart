@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../app/extensions/utils_extension.dart';
 
 class ProductSearchBar extends StatelessWidget {
   const ProductSearchBar({
@@ -9,7 +10,7 @@ class ProductSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        hintText: 'Search',
+        hintText: context.l10n.search,
         contentPadding: EdgeInsets.zero,
         prefixIcon: const Icon(Icons.search),
         filled: true,

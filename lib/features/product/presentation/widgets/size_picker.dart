@@ -19,10 +19,10 @@ class _SizePickerState extends State<SizePicker> {
 
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: .start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,
       children: [
-        Text('Size', style: context.textTheme.titleMedium),
+        Text(context.l10n.size, style: context.textTheme.titleMedium),
         Row(
           children: widget.sizes.map((size) {
             return GestureDetector(

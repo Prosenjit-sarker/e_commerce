@@ -44,10 +44,10 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     const SizedBox(height: 48),
                     AppLogo(),
                     const SizedBox(height: 24),
-                    Text('Enter Your OTP', style: context.textTheme.titleLarge),
+                    Text(context.l10n.enterYourOtp, style: context.textTheme.titleLarge),
                     Text(
-                      'Verify your otp that has been sent to your email',
-                      textAlign: .center,
+                      context.l10n.verifyYourOtpMessage,
+                      textAlign: TextAlign.center,
                       style: context.textTheme.bodyLarge?.copyWith(
                         color: Colors.grey,
                       ),
@@ -69,7 +69,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       ),
                       validator: (String? value) {
                         if (value == null || value.length < 4) {
-                          return 'Please enter otp';
+                          return context.l10n.pleaseEnterOtp;
                         }
                         return null;
                       },
@@ -77,13 +77,13 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
                     const SizedBox(height: 16),
                     Consumer<VerifyOtpProvider>(
-                      builder: (context, _, _) {
+                      builder: (context, verifyOtpProvider, child) {
                         if (_verifyOtpProvider.verifyOtpInProgress) {
                           return CenterCircularProgress();
                         }
                         return FilledButton(
                           onPressed: _onTapVerifyButton,
-                          child: Text('Verify'),
+                          child: Text(context.l10n.verify),
                         );
                       },
                     ),
@@ -92,7 +92,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
                     TextButton(
                       onPressed: _onTapSignInButton,
-                      child: Text('Already have an account? Sign in'),
+                      child: Text(context.l10n.alreadyHaveAccountSignInLower),
                     ),
                   ],
                 ),

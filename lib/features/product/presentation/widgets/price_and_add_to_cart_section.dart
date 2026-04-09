@@ -19,7 +19,7 @@ class PriceAndAddToCartSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-          borderRadius: .only(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
           ),
@@ -29,9 +29,9 @@ class PriceAndAddToCartSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            crossAxisAlignment: .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Price',style: context.textTheme.bodyLarge,),
+              Text(context.l10n.price,style: context.textTheme.bodyLarge,),
               Text('${Constants.takaSign}$price',style: context.textTheme.titleLarge?.copyWith(
                 color: AppColors.themeColor,
               ),)
@@ -52,7 +52,7 @@ class PriceAndAddToCartSection extends StatelessWidget {
                   ),
                 ),
                 onPressed: onTapAddToCart,
-                child: const Text('Add to Cart',style: TextStyle(
+                child: Text(context.l10n.addToCart,style: const TextStyle(
                   color: Colors.white
                 ),),
               );

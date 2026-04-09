@@ -41,9 +41,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     const SizedBox(height: 48),
                     AppLogo(),
                     const SizedBox(height: 24),
-                    Text('Welcome Back', style: context.textTheme.titleLarge),
+                    Text(context.l10n.welcomeBack, style: context.textTheme.titleLarge),
                     Text(
-                      'Sign in with your email and password',
+                      context.l10n.signInWithEmailAndPassword,
                       style: context.textTheme.bodyLarge?.copyWith(
                         color: Colors.grey,
                       ),
@@ -51,9 +51,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     const SizedBox(height: 24),
                     TextFormField(
                       controller: _emailTEController,
-                      decoration: InputDecoration(hintText: 'Email'),
+                      decoration: InputDecoration(hintText: context.l10n.email),
                       validator: (String? value) =>
-                          Validators.validateEmail(value, 'Email is required'),
+                          Validators.validateEmail(value, context.l10n.emailRequired),
                     ),
 
                     const SizedBox(height: 8),
@@ -62,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       controller: _passwordTEController,
                       obscureText: true,
                       obscuringCharacter: '*',
-                      decoration: InputDecoration(hintText: 'Password'),
+                      decoration: InputDecoration(hintText: context.l10n.password),
                       validator: (String? value) =>
                           Validators.validatePassword(value),
                     ),
@@ -75,14 +75,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         }
                         return FilledButton(
                           onPressed: _onTapSignInButton,
-                          child: Text('Sign In'),
+                          child: Text(context.l10n.signIn),
                         );
                       },
                     ),
                     const SizedBox(height: 16),
                     TextButton(
                       onPressed: _onTapSignUnButton,
-                      child: Text('Need an account? Sign Un'),
+                      child: Text(context.l10n.needAccountSignUp),
                     ),
                   ],
                 ),

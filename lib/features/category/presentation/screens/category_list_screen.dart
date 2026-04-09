@@ -3,6 +3,7 @@ import 'package:crafty_bay/features/shared/Presentation/widgets/center_circular_
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/Presentation/widgets/categori_card.dart';
 import '../providers/category_list_provider.dart';
 
@@ -45,11 +46,11 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
             onPressed: _onTapBackButton,
             icon: Icon(Icons.arrow_back_ios),
           ),
-          title: Text('Categories'),
+          title: Text(context.l10n.categories),
         ),
         body: Consumer<CategoryListProvider>(
-          builder: (context, _categoryListProvider, _) {
-            if (_categoryListProvider.getInitialCategoryListInProgress) {
+          builder: (context, categoryListProvider, _) {
+            if (categoryListProvider.getInitialCategoryListInProgress) {
               return CenterCircularProgress();
             }
             return Padding(
@@ -59,7 +60,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
                   Expanded(
                     child: GridView.builder(
                       controller: _scrollController,
-                      itemCount: _categoryListProvider.categories.length,
+                      itemCount: categoryListProvider.categories.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,
                         crossAxisSpacing: 8,
@@ -69,13 +70,13 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
                         return FittedBox(
                           child: CategoryCard(
                             categoryModel:
-                                _categoryListProvider.categories[index],
+                                categoryListProvider.categories[index],
                           ),
                         );
                       },
                     ),
                   ),
-                  if (_categoryListProvider.loadMoreCategoryListInProgress)
+                  if (categoryListProvider.loadMoreCategoryListInProgress)
                     CenterCircularProgress(),
                 ],
               ),
