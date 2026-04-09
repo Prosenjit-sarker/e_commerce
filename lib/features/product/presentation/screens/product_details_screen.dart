@@ -1,4 +1,7 @@
+import 'package:crafty_bay/features/product/data/models/add_to_cart_model.dart';
+import 'package:crafty_bay/features/product/presentation/providers/add_to_cart_provider.dart';
 import 'package:crafty_bay/features/shared/Presentation/widgets/center_circular_progress.dart';
+import 'package:crafty_bay/features/shared/Presentation/widgets/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../app/app_colors.dart';
@@ -28,6 +31,11 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final ProductDetailsProvider _productDetailsProvider =
       ProductDetailsProvider();
+  final AddToCartProvider _addToCartProvider = AddToCartProvider();
+
+  int _quantity = 1;
+  String? _selectedColor;
+  String? _selectedSize;
 
   @override
   void initState() {
@@ -45,77 +53,108 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: _productDetailsProvider,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: _productDetailsProvider),
+        ChangeNotifierProvider.value(value: _addToCartProvider),
+      ],
       child: Scaffold(
         appBar: AppBar(title: Text('Product details')),
-        body: Consumer<ProductDetailsProvider>(builder: (context, provider, child) {
-          if (_productDetailsProvider.getProductDataInProgress) {
-            return const CenterCircularProgress();
-          } else if (_productDetailsProvider.errorMessage != null) {
-            return Center(
-              child: Text(_productDetailsProvider.errorMessage!),
-            );
-          }
-          final productDetails = _productDetailsProvider.productDetailsModel;
-          if (productDetails == null) {
-            return const Center(
-              child: Text('Product details not found'),
-            );
-          }
+        body: Consumer<ProductDetailsProvider>(
+          builder: (context, provider, child) {
+            if (_productDetailsProvider.getProductDataInProgress) {
+              return const CenterCircularProgress();
+            } else if (_productDetailsProvider.errorMessage != null) {
+              return Center(child: Text(_productDetailsProvider.errorMessage!));
+            }
+            final productDetails = _productDetailsProvider.productDetailsModel;
+            if (productDetails == null) {
+              return const Center(child: Text('Product details not found'));
+            }
 
-          return Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ProductImageCarousel(
-                        imageUrls: productDetails.photos,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildTitleSection(productDetails),
-                            if (productDetails.colors.isNotEmpty) ...[
-                              ColorPicker(
-                                colors: productDetails.colors,
-                                onChange: (String color) {},
+            return Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ProductImageCarousel(imageUrls: productDetails.photos),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildTitleSection(productDetails),
+                              if (_productDetailsProvider
+                                  .productDetailsModel!
+                                  .colors
+                                  .isNotEmpty) ...[
+                                ColorPicker(
+                                  colors: _productDetailsProvider
+                                      .productDetailsModel!
+                                      .colors,
+                                  onChange: (String color) {
+                                    _selectedColor = color;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                              ],
+                              if (_productDetailsProvider
+                                  .productDetailsModel!
+                                  .sizes
+                                  .isNotEmpty) ...[
+                                SizePicker(
+                                  sizes: _productDetailsProvider
+                                      .productDetailsModel!
+                                      .sizes,
+                                  onChange: (String size) {
+                                    _selectedSize = size;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                              ],
+                              Text(
+                                'Description',
+                                style: context.textTheme.titleMedium,
                               ),
-                              const SizedBox(height: 16),
-                            ],
-                            if (productDetails.sizes.isNotEmpty) ...[
-                              SizePicker(
-                                sizes: productDetails.sizes,
-                                onChange: (String size) {},
+                              const SizedBox(height: 8),
+                              Text(
+                                _productDetailsProvider
+                                    .productDetailsModel!
+                                    .description,
+                                style: const TextStyle(color: Colors.grey),
                               ),
-                              const SizedBox(height: 16),
                             ],
-                            Text(
-                              'Description',
-                              style: context.textTheme.titleMedium,
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              _productDetailsProvider.productDetailsModel!.description,
-                              style: const TextStyle(color: Colors.grey),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              PriceAndAddToCartSection(
-                price: productDetails.currentPrice.toDouble(),
-                onTapAddToCart: () {},
-              ),
-            ],
-          );
-        }),
+                PriceAndAddToCartSection(
+                  price: _productDetailsProvider
+                      .productDetailsModel!
+                      .currentPrice
+                      .toDouble(),
+                  onTapAddToCart: () async {
+                    AddToCartModel params = AddToCartModel(
+                      id: _productDetailsProvider.productDetailsModel!.id,
+                      quantity: _quantity,
+                      color: _selectedColor,
+                      size: _selectedSize,
+                    );
+                    final isSuccess = await _addToCartProvider.addToCart(params);
+                    if (isSuccess) {
+                      showSnackBarMessage(context, 'Added to cart');
+                    } else {
+                      showSnackBarMessage(context, _addToCartProvider.errorMessage!);
+                    }
+                  },
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -163,9 +202,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         IncDecButton(
           maxCount: _productDetailsProvider.productDetailsModel!.quantity,
-            onChange: (int count) {}),
+          onChange: (int count) {
+            _quantity = count;
+          },
+        ),
       ],
     );
   }
 }
-

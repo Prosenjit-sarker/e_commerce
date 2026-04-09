@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../app/app_colors.dart';
 import '../../../../app/constants.dart';
 import '../../../../app/extensions/utils_extension.dart';
+import '../../../shared/Presentation/widgets/center_circular_progress.dart';
+import '../providers/add_to_cart_provider.dart';
 
 class PriceAndAddToCartSection extends StatelessWidget {
   const PriceAndAddToCartSection({
@@ -35,18 +38,25 @@ class PriceAndAddToCartSection extends StatelessWidget {
             ],
 
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: AppColors.themeColor,
-              fixedSize: const Size.fromWidth(120),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            onPressed: onTapAddToCart,
-            child: const Text('Add to Cart',style: TextStyle(
-              color: Colors.white
-            ),),
+          Consumer<AddToCartProvider>(
+            builder: (context, cartProvider, child) {
+              if(cartProvider.addToCartInProgress){
+                return  CenterCircularProgress();
+              }
+              return TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: AppColors.themeColor,
+                  fixedSize: const Size.fromWidth(120),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: onTapAddToCart,
+                child: const Text('Add to Cart',style: TextStyle(
+                  color: Colors.white
+                ),),
+              );
+            }
           ),
 
         ],

@@ -24,6 +24,7 @@ class SignInProvider extends ChangeNotifier {
           "email": email,
           "password": password,
         },
+        isFromLogin: true,
       );
 
       if (response.isSuccess) {
