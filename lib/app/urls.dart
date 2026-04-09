@@ -20,5 +20,10 @@ class Urls {
   static String productDetailsUrl(String productId) =>
       '$_baseUrl/products/id/$productId';
 
+  static String searchProductUrl(int pageNo, int pageSize, String query) {
+    final encodedQuery = Uri.encodeQueryComponent(query);
+    return '$_baseUrl/products?count=$pageSize&page=$pageNo&search=$encodedQuery';
+  }
+
 
 }

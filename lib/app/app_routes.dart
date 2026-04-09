@@ -7,6 +7,7 @@ import 'package:crafty_bay/features/shared/Presentation/screens/main_nav_holder_
 import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/screen/splash_screen.dart';
+import '../features/home/presentation/screens/product_search_screen.dart';
 import '../features/product/presentation/screens/product_details_screen.dart';
 import '../features/product/presentation/screens/product_list_screen.dart';
 import '../features/reviews/presentations/screens/review_screen.dart';
@@ -41,6 +42,10 @@ class AppRoutes {
         break;
       case ReviewScreen.name:
         widget = const ReviewScreen();
+        break;
+      case ProductSearchScreen.name:
+        final query = settings.arguments as String;
+        widget = ProductSearchScreen(query: query);
         break;
 
 
