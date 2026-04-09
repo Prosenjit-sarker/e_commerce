@@ -7,6 +7,9 @@ class Urls {
 
   static const String homeSlidersUrl = '$_baseUrl/slides';
   static const String addToCartUrl = '$_baseUrl/cart';
+  static const String getCartListUrl = '$_baseUrl/cart';
+  static const String getWishListUrl = '$_baseUrl/wishlist';
+
 
 
   static String categoryListUrl(int pageNO, int pageSize) =>

@@ -1,12 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:crafty_bay/features/shared/Presentation/widgets/no_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
-import '../../../../app/asset_paths.dart';
 import '../../../../app/constants.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../../../product/data/models/product_model.dart';
 import '../../../product/presentation/screens/product_details_screen.dart';
+import 'network_image_widget.dart';
+import 'product_favorite_button.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.productModel});
@@ -18,7 +17,10 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
-            context, ProductDetailsScreen.name, arguments: productModel.id);
+          context,
+          ProductDetailsScreen.name,
+          arguments: productModel.id,
+        );
       },
       child: Card(
         color: Colors.white,
@@ -32,7 +34,7 @@ class ProductCard extends StatelessWidget {
               Container(
                 height: 140,
                 width: 120,
-                padding: .all(8),
+                padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: AppColors.themeColor.withAlpha(30),
                   borderRadius: BorderRadius.only(
@@ -40,7 +42,7 @@ class ProductCard extends StatelessWidget {
                     topRight: Radius.circular(8),
                   ),
                 ),
-                child: getImage(productModel.photos),
+                child: AppNetWorkImage(urls: productModel.photos),
               ),
 
               Padding(
@@ -52,7 +54,7 @@ class ProductCard extends StatelessWidget {
                       productModel.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      style: TextStyle(overflow: .ellipsis),
+                      style: TextStyle(overflow: TextOverflow.ellipsis),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,7 +66,7 @@ class ProductCard extends StatelessWidget {
                           ),
                         ),
                         Wrap(
-                          crossAxisAlignment: .center,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Icon(Icons.star, size: 18, color: Colors.amber),
                             Text(
@@ -75,18 +77,7 @@ class ProductCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Container(
-                          padding: .all(2),
-                          decoration: BoxDecoration(
-                            color: AppColors.themeColor,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Icon(
-                            Icons.favorite_outline,
-                            color: Colors.white,
-                            size: 16,
-                          ),
-                        ),
+                        ProductFavoriteButton(productId: productModel.id),
                       ],
                     ),
                   ],
@@ -98,17 +89,5 @@ class ProductCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget getImage(List<String> urls) {
-    if (urls.isNotEmpty) {
-      return CachedNetworkImage(imageUrl: urls.first, fit: .scaleDown,
-        progressIndicatorBuilder: (context, url, downloadProgress) =>
-            NoImage(),
-        errorWidget: (context, url, error) => NoImage(),
-      );
-    } else {
-      return NoImage();
-    }
   }
 }

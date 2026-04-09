@@ -1,7 +1,6 @@
 import 'package:crafty_bay/features/product/data/models/add_to_cart_model.dart';
 import 'package:crafty_bay/features/product/presentation/providers/add_to_cart_provider.dart';
 import 'package:crafty_bay/features/shared/Presentation/widgets/center_circular_progress.dart';
-import 'package:crafty_bay/features/shared/Presentation/widgets/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../app/app_colors.dart';
@@ -137,6 +136,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       .currentPrice
                       .toDouble(),
                   onTapAddToCart: () async {
+                    final messenger = ScaffoldMessenger.of(context);
                     AddToCartModel params = AddToCartModel(
                       id: _productDetailsProvider.productDetailsModel!.id,
                       quantity: _quantity,
@@ -144,10 +144,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       size: _selectedSize,
                     );
                     final isSuccess = await _addToCartProvider.addToCart(params);
+                    if (!mounted) {
+                      return;
+                    }
                     if (isSuccess) {
-                      showSnackBarMessage(context, 'Added to cart');
+                      messenger.showSnackBar(
+                        SnackBar(content: Text('Added to cart')),
+                      );
                     } else {
-                      showSnackBarMessage(context, _addToCartProvider.errorMessage!);
+                      messenger.showSnackBar(
+                        SnackBar(
+                          content: Text(_addToCartProvider.errorMessage!),
+                        ),
+                      );
                     }
                   },
                 ),
@@ -194,7 +203,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       style: TextStyle(color: AppColors.themeColor),
                     ),
                   ),
-                  ProductFavoriteButton(),
+                  ProductFavoriteButton(productId: productDetails.id),
                 ],
               ),
             ],
